@@ -6126,6 +6126,11 @@ void CoreChecks::PreCallRecordBeginCommandBuffer(VkCommandBuffer commandBuffer, 
             cb_state->framebuffers.insert(cb_state->beginInfo.pInheritanceInfo->framebuffer);
         }
     }
+
+    auto chained_device_group_struct = lvl_find_in_chain<VkDeviceGroupCommandBufferBeginInfo>(pBeginInfo->pNext);
+    if (chained_device_group_struct) {
+        cb_state->deviceMask = chained_device_group_struct->deviceMask;
+    }
 }
 
 bool CoreChecks::PreCallValidateEndCommandBuffer(VkCommandBuffer commandBuffer) {
@@ -9965,6 +9970,11 @@ void CoreChecks::RecordCmdBeginRenderPassState(VkCommandBuffer commandBuffer, co
                                 {HandleToUint64(render_pass_state->renderPass), kVulkanObjectTypeRenderPass}, cb_state);
         // transition attachments to the correct layouts for beginning of renderPass and first subpass
         TransitionBeginRenderPassLayouts(cb_state, render_pass_state, framebuffer);
+
+        auto chained_device_group_struct = lvl_find_in_chain<VkDeviceGroupRenderPassBeginInfo>(pRenderPassBegin->pNext);
+        if (chained_device_group_struct) {
+            render_pass_state->deviceMask = chained_device_group_struct->deviceMask;
+        }
     }
 }
 

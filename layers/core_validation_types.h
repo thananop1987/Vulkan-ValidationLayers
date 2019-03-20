@@ -441,6 +441,7 @@ struct RENDER_PASS_STATE : public BASE_NODE {
     std::vector<std::vector<uint32_t>> self_dependencies;
     std::vector<DAGNode> subpassToNode;
     std::unordered_map<uint32_t, bool> attachment_first_read;
+    uint32_t deviceMask;
 
     RENDER_PASS_STATE(VkRenderPassCreateInfo2KHR const *pCreateInfo) : createInfo(pCreateInfo) {}
     RENDER_PASS_STATE(VkRenderPassCreateInfo const *pCreateInfo) { ConvertVkRenderPassCreateInfoToV2KHR(pCreateInfo, &createInfo); }
@@ -980,6 +981,7 @@ struct GLOBAL_CB_NODE : public BASE_NODE {
 
     uint32_t viewportMask;
     uint32_t scissorMask;
+    uint32_t deviceMask;
     VkRenderPassBeginInfo activeRenderPassBeginInfo;
     RENDER_PASS_STATE *activeRenderPass;
     VkSubpassContents activeSubpassContents;
