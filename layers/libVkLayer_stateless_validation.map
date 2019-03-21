@@ -1,0 +1,10 @@
+libVkLayer_stateless_validation {
+  global:
+    vkGetInstanceProcAddr;
+    vkGetDeviceProcAddr;
+    vkEnumerateInstanceLayerProperties;
+    vkEnumerateInstanceExtensionProperties;
+    vkNegotiateLoaderLayerInterfaceVersion;
+  local:
+    *;
+};

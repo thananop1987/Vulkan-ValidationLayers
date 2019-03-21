@@ -1,0 +1,10 @@
+libVkLayer_unique_objects {
+  global:
+    vkGetInstanceProcAddr;
+    vkGetDeviceProcAddr;
+    vkEnumerateInstanceLayerProperties;
+    vkEnumerateInstanceExtensionProperties;
+    vkNegotiateLoaderLayerInterfaceVersion;
+  local:
+    *;
+};
