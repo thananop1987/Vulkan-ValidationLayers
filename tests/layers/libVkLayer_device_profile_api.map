@@ -1,0 +1,9 @@
+libVkLayer_device_profile_api {
+  global:
+    vkGetInstanceProcAddr;
+    vkEnumerateInstanceLayerProperties;
+    vkEnumerateInstanceExtensionProperties;
+    vkNegotiateLoaderLayerInterfaceVersion;
+  local:
+    *;
+};

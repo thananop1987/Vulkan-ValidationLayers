@@ -87,6 +87,7 @@ else(UNIX AND NOT APPLE) # i.e.: Linux
         add_library(VkLayer_${target} SHARED ${ARGN})
         add_dependencies(VkLayer_${target} VulkanVL_generate_helper_files VkLayer_utils)
         set_target_properties(VkLayer_${target} PROPERTIES LINK_FLAGS "-Wl,-Bsymbolic")
+        set_target_properties(VkLayer_${target} PROPERTIES LINK_FLAGS "-Wl,--version-script=${CMAKE_CURRENT_SOURCE_DIR}/libVkLayer_${target}.map")
         target_link_libraries(VkLayer_${target} PRIVATE VkLayer_utils)
         target_compile_options(VkLayer_${target} PRIVATE "-Wpointer-arith" "-Wno-unused-function")
     endmacro()
