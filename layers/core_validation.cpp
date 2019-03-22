@@ -2020,7 +2020,7 @@ bool CoreChecks::ValidateDeviceMaskToRenderPass(RENDER_PASS_STATE *render_pass, 
                                                 VkDebugReportObjectTypeEXT VUID_handle_type, uint64_t VUID_handle,
                                                 const char *VUID) {
     bool skip = false;
-    if (render_pass->deviceMask != 0) {
+    if (render_pass && render_pass->deviceMask != 0) {
         uint32_t count = 1 << physical_device_count;
         for (uint32_t i = 0; i < count; ++i) {
             uint32_t mask = 1 << i;
